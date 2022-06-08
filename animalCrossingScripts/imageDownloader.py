@@ -14,7 +14,7 @@ def folder_create(images):
 
     download_images(images, folder_name)
 
-def download_images(images, folder):
+def download_images(images, folder_name):
     count = 0
 
     print(f"Total {len(images)} Images found")
@@ -41,8 +41,19 @@ def download_images(images, folder):
                     r = str(r, 'utf-8')
 
                 except UnicodeDecodeError:
-                    with open(f"{folder_name}/images{i+1}.jpg", "wb+") as f:
-                        f.write(r)
+                    if image_link.endswith('Icon.png'):
+                        image_name = ''
+                        for i in range(30, len(image_link)):
+                            image_name = image_name + image_link[i]
+
+                        
+                        image_name = image_name.replace("_Icon", "")
+                        image_name = image_name.replace("_CF", "")
+                        image_name = image_name.replace("_", " ")
+                        with open(f"{folder_name}/{image_name}", "wb+") as f:
+                        
+
+                            f.write(r)
 
                     count += 1
             except:
