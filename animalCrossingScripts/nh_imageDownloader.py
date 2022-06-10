@@ -42,21 +42,23 @@ def download_images(images, folder_name):
 
                 except UnicodeDecodeError:
                     if image_link.endswith('Icon.png'):
-                        image_name = ''
-                        for i in range(37, len(image_link)):
-                            image_name = image_name + image_link[i]
-                            if image_name.endswith(".png"):
-                                break
+                        size = "64px"
+                        if size in image_link:
+                            image_name = ''
+                            for i in range(37, len(image_link)):
+                                image_name = image_name + image_link[i]
+                                if image_name.endswith(".png"):
+                                    break
 
-                        
-                        image_name = image_name.replace("_Icon", "")
-                        image_name = image_name.replace("_NH", "")
-                        image_name = image_name.replace("_", " ")
-                        print(image_name)
-                        with open(f"{folder_name}/{image_name}", "wb+") as f:
-                        
+                            print(image_link)
+                            image_name = image_name.replace("_Icon", "")
+                            image_name = image_name.replace("_NH", "")
+                            image_name = image_name.replace("_", " ")
+                            print(image_name)
+                            with open(f"{folder_name}/{image_name}", "wb+") as f:
+                            
 
-                            f.write(r)
+                                f.write(r)
 
                     count += 1
             except:
